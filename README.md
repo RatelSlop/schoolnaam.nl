@@ -1,6 +1,6 @@
 # schoolnaam.nl
 
-Official landing page and project hub for **RatelSlop Studios**.
+Official landing page and project hub for **RatelSlop**.
 
 A home for hobby projects, experimental web apps, and AI slop.
 
