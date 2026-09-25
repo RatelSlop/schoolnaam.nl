@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — schoolnaam</title>
+  <meta name="description" content="Privacy Policy for schoolnaam.nl & RatelSlop Studios — zero tracking, functional local storage only.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="alternate icon" href="/favicon.ico">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="Privacy Policy — schoolnaam">
+  <meta property="og:description" content="Privacy Policy for schoolnaam.nl — transparent, privacy-first, zero tracking.">
+  <meta property="og:image" content="https://schoolnaam.nl/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://schoolnaam.nl/apple-touch-icon.png">
+
+  <!-- Theme check before render -->
+  <script>
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) {
+        document.documentElement.setAttribute('data-theme', storedTheme);
+      } else {
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Dark Theme */
+    :root, [data-theme="dark"] {
+      --bg: #12161f;
+      --bg-grid: rgba(255, 255, 255, 0.06);
+      --glass-surface: rgba(27, 33, 45, 0.72);
+      --glass-header: rgba(33, 41, 56, 0.85);
+      --border: #364257;
+      --border-strong: #4f5d75;
+      --text-title: #ffffff;
+      --text-main: #f3f6fb;
+      --text-muted: #cbd5e1;
+      --text-dim: #94a3b8;
+      --accent: #38bdf8;
+      --btn-bg: #263042;
+      --btn-border: #41516e;
+      --btn-text: #ffffff;
+      --btn-hover-bg: #323e54;
+      --tag-bg: #1e293b;
+      --tag-border: #475569;
+      --tag-text: #93c5fd;
+      --code-bg: rgba(0, 0, 0, 0.35);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Light Theme */
+    [data-theme="light"] {
+      --bg: #f4f6fa;
+      --bg-grid: rgba(0, 0, 0, 0.05);
+      --glass-surface: rgba(255, 255, 255, 0.82);
+      --glass-header: rgba(248, 250, 252, 0.9);
+      --border: #cbd5e1;
+      --border-strong: #94a3b8;
+      --text-title: #0f172a;
+      --text-main: #1e293b;
+      --text-muted: #334155;
+      --text-dim: #64748b;
+      --accent: #0284c7;
+      --btn-bg: #f8fafc;
+      --btn-border: #cbd5e1;
+      --btn-text: #0f172a;
+      --btn-hover-bg: #f1f5f9;
+      --tag-bg: #e0f2fe;
+      --tag-border: #93c5fd;
+      --tag-text: #0369a1;
+      --code-bg: rgba(0, 0, 0, 0.05);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(to right, var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bg-grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--text-main);
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 1.5rem;
+      line-height: 1.6;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    header,
+    main {
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    /* Top utility bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1.5px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .top-bar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      padding: 0.2rem;
+      border-radius: 12px;
+      transition: transform 0.18s ease, filter 0.18s ease;
+      cursor: pointer;
+    }
+
+    .top-bar-brand:hover {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .top-bar-brand:active {
+      transform: scale(0.96);
+    }
+
+    .top-bar-brand:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .brand-logo {
+      height: 68px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+      transition: filter 0.18s ease;
+    }
+
+    .top-bar-brand:hover .brand-logo {
+      filter: drop-shadow(0 4px 14px rgba(56, 189, 248, 0.45));
+    }
+
+    .controls-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+    }
+
+    /* Theme Switcher Toggle */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1.5px solid var(--btn-border);
+      padding: 0.42rem 0.85rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      min-width: 90px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--btn-hover-bg);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Language Dropdown Select */
+    .lang-select-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1.5px solid var(--btn-border);
+      padding: 0.42rem 1.75rem 0.42rem 0.75rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.6rem center;
+      min-width: 90px;
+      text-align: left;
+    }
+
+    .lang-select:hover {
+      background-color: var(--btn-hover-bg);
+      border-color: var(--border-strong);
+    }
+
+    .lang-select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Header title */
+    header {
+      margin-bottom: 2rem;
+    }
+
+    h1.page-title {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--text-title);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Glass Code Terminal Block */
+    .glass-terminal-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 3rem;
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1.25rem;
+      background: var(--glass-header);
+      border-bottom: 1.5px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+    }
+
+    .terminal-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot.red { background: #ef4444; opacity: 0.75; }
+    .dot.yellow { background: #f59e0b; opacity: 0.75; }
+    .dot.green { background: #22c55e; opacity: 0.75; }
+
+    .terminal-title {
+      margin-left: 0.4rem;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .terminal-meta {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .terminal-body {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    .legal-section {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+    }
+
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-title);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-text:last-child {
+      margin-bottom: 0;
+    }
+
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--tag-text);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.35rem;
+    }
+
+    .return-bar {
+      margin-top: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1.5px solid var(--btn-border);
+      padding: 0.6rem 1.15rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-return:hover {
+      background: var(--btn-hover-bg);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1.5px solid var(--border);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--text-title);
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      .brand-logo {
+        height: 52px;
+      }
+      .controls-group {
+        gap: 0.35rem;
+      }
+      .theme-toggle-btn,
+      .lang-select {
+        min-width: 84px;
+        font-size: 0.74rem;
+        padding: 0.36rem 0.65rem;
+      }
+      .terminal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .terminal-body {
+        padding: 1.5rem 1.15rem;
+      }
+      .return-bar {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      footer {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top utility bar with brand/logo area, theme switcher (top), and language select (bottom) -->
+    <div class="top-bar">
+      <a href="/" class="top-bar-brand" aria-label="schoolnaam.nl home" title="schoolnaam.nl — Home">
+        <img src="/logo.png" alt="RatelSlop Studios Logo" class="brand-logo" width="59" height="68">
+      </a>
+
+      <div class="controls-group">
+        <!-- Theme Switcher Button (Boven) -->
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle theme" title="Toggle dark / light mode">
+          <svg id="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="moon-icon" style="display:none;" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span id="theme-text">Light</span>
+        </button>
+
+        <!-- Language Switcher Dropdown (Onder) -->
+        <div class="lang-select-wrapper">
+          <select id="lang-select" class="lang-select" aria-label="Select language">
+            <option value="en" selected>EN</option>
+            <option value="nl">NL</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <h1 id="page-title" class="page-title">Privacy Policy</h1>
+      <p id="page-desc" class="page-desc">
+        No analytics. No tracking cookies. Minimal by design.
+      </p>
+    </header>
+
+    <!-- Main Content: Semi-Transparent Code Terminal Block -->
+    <main>
+      <article class="glass-terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-controls">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">// legal / privacy_policy.md</span>
+          </div>
+          <div class="terminal-meta">
+            <span>AVG/GDPR COMPLIANT &bull; NO_TRACKERS: TRUE</span>
+          </div>
+        </div>
+
+        <div class="terminal-body">
+          <!-- Section 1: Overview -->
+          <section class="legal-section">
+            <span class="section-tag">01 // philosophy</span>
+            <h2 id="sec1-title" class="section-title">Privacy-First Architecture</h2>
+            <p id="sec1-p1" class="section-text">
+              schoolnaam.nl is a project hub operated by RatelSlop Studios. We believe web browsing should be private and clean. We do not use advertising networks, tracking pixels, behavioral cookies, or intrusive third-party telemetry.
+            </p>
+            <span class="badge-chip">&#10003; 0 TRACKING COOKIES</span>
+          </section>
+
+          <!-- Section 2: Local Storage -->
+          <section class="legal-section">
+            <span class="section-tag">02 // client_storage</span>
+            <h2 id="sec2-title" class="section-title">Functional Local Storage</h2>
+            <p id="sec2-p1" class="section-text">
+              We do not store cookies on your device. We use your browser's standard <code>localStorage</code> strictly for essential functional preferences requested by you:
+            </p>
+            <p id="sec2-p2" class="section-text">
+              &bull; <code>theme</code>: Remembers your dark mode / light mode selection.<br>
+              &bull; <code>lang</code>: Remembers your preferred display language (EN / NL).<br>
+              &bull; <code>ratelslop_repos_cache_v4</code>: Temporarily caches public GitHub repository information for 5 minutes on your computer to avoid GitHub API rate limits.
+            </p>
+            <p id="sec2-p3" class="section-text">
+              This data stays exclusively on your own device and is never transmitted to us or third parties. Under the EU ePrivacy Directive and Dutch Telecommunications Act, strictly functional storage does not require a cookie banner.
+            </p>
+            <span class="badge-chip">&#9881; FUNCTIONAL STORAGE ONLY</span>
+          </section>
+
+          <!-- Section 3: Hosting & Server Logs -->
+          <section class="legal-section">
+            <span class="section-tag">03 // infrastructure</span>
+            <h2 id="sec3-title" class="section-title">Hosting &amp; Server Logs</h2>
+            <p id="sec3-p1" class="section-text">
+              This website is statically hosted via GitHub Pages (operated by GitHub Inc. / Microsoft Corporation). When you visit any website, the hosting infrastructure automatically processes technical connection data (such as your IP address, browser user-agent, and request timestamps) to deliver web pages securely and defend against denial-of-service (DDoS) attacks.
+            </p>
+            <p id="sec3-p2" class="section-text">
+              For more details on GitHub's infrastructure data processing, please refer to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">GitHub Privacy Statement</a>.
+            </p>
+          </section>
+
+          <!-- Section 4: External Links & GitHub API -->
+          <section class="legal-section">
+            <span class="section-tag">04 // external_services</span>
+            <h2 id="sec4-title" class="section-title">External Links &amp; GitHub API</h2>
+            <p id="sec4-p1" class="section-text">
+              Our website dynamically queries the public GitHub API (<code>api.github.com</code>) directly from your browser to retrieve our list of public repositories. We also provide direct links to GitHub repositories, external demos, and tools. When you follow an external link, the privacy policy of that respective external platform applies.
+            </p>
+          </section>
+
+          <!-- Section 5: Rights & Contact -->
+          <section class="legal-section">
+            <span class="section-tag">05 // compliance</span>
+            <h2 id="sec5-title" class="section-title">Your Rights (GDPR / AVG) &amp; Contact</h2>
+            <p id="sec5-p1" class="section-text">
+              Under the General Data Protection Regulation (GDPR / AVG), you have rights regarding your personal data. Because we do not store accounts, identities, or personal records, we generally hold no personal data that can identify you.
+            </p>
+            <p id="sec5-p2" class="section-text">
+              For security disclosures, questions, or privacy inquiries regarding RatelSlop Studios, you can open an issue or reach out via our GitHub organization.
+            </p>
+          </section>
+
+          <!-- Return link bar -->
+          <div class="return-bar">
+            <a href="/" class="btn-return">
+              &larr; Back to schoolnaam.nl
+            </a>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-dim);">
+              <a href="/terms/" style="color: var(--accent); text-decoration: none;">View Terms of Service &rarr;</a>
+            </span>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <span>schoolnaam.nl &bull; RatelSlop Studios</span>
+      <div class="footer-links">
+        <a href="/privacy/" style="color: var(--text-title); text-decoration: underline;">Privacy</a>
+        <span>&bull;</span>
+        <a href="/terms/">Terms</a>
+      </div>
+      <a href="https://github.com/RatelSlop" target="_blank" rel="noopener noreferrer">github.com/RatelSlop</a>
+    </footer>
+  </div>
+
+  <script>
+    // --- TRANSLATIONS (i18n) ---
+    const TRANSLATIONS = {
+      en: {
+        pageTitle: 'Privacy Policy',
+        pageDesc: 'No analytics. No tracking cookies. Minimal by design.',
+        sec1Title: 'Privacy-First Architecture',
+        sec1P1: 'schoolnaam.nl is a project hub operated by RatelSlop Studios. We believe web browsing should be private and clean. We do not use advertising networks, tracking pixels, behavioral cookies, or intrusive third-party telemetry.',
+        sec2Title: 'Functional Local Storage',
+        sec2P1: "We do not store cookies on your device. We use your browser's standard localStorage strictly for essential functional preferences requested by you:",
+        sec2P2: "• theme: Remembers your dark mode / light mode selection.<br>• lang: Remembers your preferred display language (EN / NL).<br>• ratelslop_repos_cache_v4: Temporarily caches public GitHub repository information for 5 minutes on your computer to avoid GitHub API rate limits.",
+        sec2P3: 'This data stays exclusively on your own device and is never transmitted to us or third parties. Under the EU ePrivacy Directive and Dutch Telecommunications Act, strictly functional storage does not require a cookie banner.',
+        sec3Title: 'Hosting & Server Logs',
+        sec3P1: 'This website is statically hosted via GitHub Pages (operated by GitHub Inc. / Microsoft Corporation). When you visit any website, the hosting infrastructure automatically processes technical connection data (such as your IP address, browser user-agent, and request timestamps) to deliver web pages securely and defend against denial-of-service (DDoS) attacks.',
+        sec3P2: "For more details on GitHub's infrastructure data processing, please refer to the GitHub Privacy Statement.",
+        sec4Title: 'External Links & GitHub API',
+        sec4P1: 'Our website dynamically queries the public GitHub API (api.github.com) directly from your browser to retrieve our list of public repositories. We also provide direct links to GitHub repositories, external demos, and tools. When you follow an external link, the privacy policy of that respective external platform applies.',
+        sec5Title: 'Your Rights (GDPR / AVG) & Contact',
+        sec5P1: 'Under the General Data Protection Regulation (GDPR / AVG), you have rights regarding your personal data. Because we do not store accounts, identities, or personal records, we generally hold no personal data that can identify you.',
+        sec5P2: 'For security disclosures, questions, or privacy inquiries regarding RatelSlop Studios, you can open an issue or reach out via our GitHub organization.',
+        themeLight: 'Light',
+        themeDark: 'Dark'
+      },
+      nl: {
+        pageTitle: 'Privacyverklaring',
+        pageDesc: 'Geen analytics. Geen tracking cookies. Puur en minimaal.',
+        sec1Title: 'Privacy-First Filosofie',
+        sec1P1: 'schoolnaam.nl is een projecthub beheerd door RatelSlop Studios. Wij vinden dat websites bezoeken schoon en privé moet zijn. Wij gebruiken geen advertentienetwerken, tracking pixels, gedragscookies of opdringerige telemetry van derden.',
+        sec2Title: 'Functionele Lokale Opslag (Geen Cookies)',
+        sec2P1: 'Wij plaatsen geen cookies op je apparaat. We maken uitsluitend gebruik van de standaard localStorage van je browser voor strikt functionele instellingen die je zelf kiest:',
+        sec2P2: '• theme: Onthoudt je dark/light mode voorkeur.<br>• lang: Onthoudt je gewenste weergavetaal (EN / NL).<br>• ratelslop_repos_cache_v4: Bewaart openbare GitHub-repo informatie tijdelijk 5 minuten op jouw computer om GitHub API limieten te voorkomen.',
+        sec2P3: 'Deze gegevens blijven 100% lokaal op jouw apparaat en worden nooit verzonden naar ons of derden. Onder de Europese ePrivacy-richtlijn en de Nederlandse Telecommunicatiewet vereist strikt functionele opslag géén cookiebanner.',
+        sec3Title: 'Hosting & Serverlogs',
+        sec3P1: 'Deze website wordt statisch gehost via GitHub Pages (GitHub Inc. / Microsoft Corporation). Bij ieder websitebezoek verwerkt de hostinginfrastructuur automatisch technische verbindingsgegevens (zoals je IP-adres, browser user-agent en tijdstempels) om webpagina’s veilig af te leveren en te beveiligen tegen DDoS-aanvallen.',
+        sec3P2: 'Voor meer informatie over de gegevensverwerking door GitHub verwijzen we naar het Privacybeleid van GitHub.',
+        sec4Title: 'Externe Koppelingen & GitHub API',
+        sec4P1: 'Onze website haalt direct vanuit jouw browser openbare gegevens op via de GitHub API (api.github.com) om onze repository-lijst actueel te tonen. Daarnaast bevat de site links naar externe projecten, tools en broncode op GitHub. Zodra je een externe link volgt, is het privacybeleid van dat betreffende platform van toepassing.',
+        sec5Title: 'Jouw Rechten (AVG / GDPR) & Contact',
+        sec5P1: 'Onder de Algemene Verordening Gegevensbescherming (AVG) heb je rechten met betrekking tot je persoonsgegevens. Omdat wij geen accounts, identiteiten of gebruikersdatabases bijhouden, beschikken wij niet over identificeerbare persoonsgegevens van je.',
+        sec5P2: 'Voor vragen, opmerkingen of meldingen met betrekking tot RatelSlop Studios kun je contact opnemen of een issue aanmaken via onze GitHub-organisatie.',
+        themeLight: 'Licht',
+        themeDark: 'Donker'
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+
+      const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      document.getElementById('page-title').textContent = t.pageTitle;
+      document.getElementById('page-desc').textContent = t.pageDesc;
+      document.getElementById('sec1-title').textContent = t.sec1Title;
+      document.getElementById('sec1-p1').textContent = t.sec1P1;
+      document.getElementById('sec2-title').textContent = t.sec2Title;
+      document.getElementById('sec2-p1').textContent = t.sec2P1;
+      document.getElementById('sec2-p2').innerHTML = t.sec2P2;
+      document.getElementById('sec2-p3').textContent = t.sec2P3;
+      document.getElementById('sec3-title').textContent = t.sec3Title;
+      document.getElementById('sec3-p1').textContent = t.sec3P1;
+      document.getElementById('sec4-title').textContent = t.sec4Title;
+      document.getElementById('sec4-p1').textContent = t.sec4P1;
+      document.getElementById('sec5-title').textContent = t.sec5Title;
+      document.getElementById('sec5-p1').textContent = t.sec5P1;
+      document.getElementById('sec5-p2').textContent = t.sec5P2;
+
+      // Update theme toggle label
+      const activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      document.getElementById('theme-text').textContent = activeTheme === 'light' ? t.themeDark : t.themeLight;
+
+      // Update select value
+      const langSelect = document.getElementById('lang-select');
+      if (langSelect && langSelect.value !== lang) {
+        langSelect.value = lang;
+      }
+    }
+
+    const langSelect = document.getElementById('lang-select');
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    // Theme toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const themeText = document.getElementById('theme-text');
+
+    function updateToggleButton(theme) {
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+      if (theme === 'light') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        themeText.textContent = t.themeDark;
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+        themeText.textContent = t.themeLight;
+      }
+    }
+
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    updateToggleButton(currentTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const targetTheme = activeTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', targetTheme);
+      localStorage.setItem('theme', targetTheme);
+      updateToggleButton(targetTheme);
+    });
+
+    // Init
+    applyLanguage(currentLang);
+  </script>
+</body>
+</html>

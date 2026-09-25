@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — schoolnaam</title>
+  <meta name="description" content="Terms of Service & AI Slop Disclaimer for schoolnaam.nl and RatelSlop Studios projects.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="alternate icon" href="/favicon.ico">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="Terms of Service — schoolnaam">
+  <meta property="og:description" content="Terms of Service, project licensing rules & AI slop disclaimer for schoolnaam.nl.">
+  <meta property="og:image" content="https://schoolnaam.nl/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://schoolnaam.nl/apple-touch-icon.png">
+
+  <!-- Theme check before render -->
+  <script>
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) {
+        document.documentElement.setAttribute('data-theme', storedTheme);
+      } else {
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Dark Theme */
+    :root, [data-theme="dark"] {
+      --bg: #12161f;
+      --bg-grid: rgba(255, 255, 255, 0.06);
+      --glass-surface: rgba(27, 33, 45, 0.72);
+      --glass-header: rgba(33, 41, 56, 0.85);
+      --border: #364257;
+      --border-strong: #4f5d75;
+      --text-title: #ffffff;
+      --text-main: #f3f6fb;
+      --text-muted: #cbd5e1;
+      --text-dim: #94a3b8;
+      --accent: #38bdf8;
+      --btn-bg: #263042;
+      --btn-border: #41516e;
+      --btn-text: #ffffff;
+      --btn-hover-bg: #323e54;
+      --tag-bg: #1e293b;
+      --tag-border: #475569;
+      --tag-text: #93c5fd;
+      --badge-alert-bg: rgba(245, 158, 11, 0.15);
+      --badge-alert-border: #f59e0b;
+      --badge-alert-text: #fbbf24;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Light Theme */
+    [data-theme="light"] {
+      --bg: #f4f6fa;
+      --bg-grid: rgba(0, 0, 0, 0.05);
+      --glass-surface: rgba(255, 255, 255, 0.82);
+      --glass-header: rgba(248, 250, 252, 0.9);
+      --border: #cbd5e1;
+      --border-strong: #94a3b8;
+      --text-title: #0f172a;
+      --text-main: #1e293b;
+      --text-muted: #334155;
+      --text-dim: #64748b;
+      --accent: #0284c7;
+      --btn-bg: #f8fafc;
+      --btn-border: #cbd5e1;
+      --btn-text: #0f172a;
+      --btn-hover-bg: #f1f5f9;
+      --tag-bg: #e0f2fe;
+      --tag-border: #93c5fd;
+      --tag-text: #0369a1;
+      --badge-alert-bg: #fef3c7;
+      --badge-alert-border: #f59e0b;
+      --badge-alert-text: #b45309;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(to right, var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bg-grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--text-main);
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 1.5rem;
+      line-height: 1.6;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    header,
+    main {
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    /* Top utility bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1.5px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .top-bar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      padding: 0.2rem;
+      border-radius: 12px;
+      transition: transform 0.18s ease, filter 0.18s ease;
+      cursor: pointer;
+    }
+
+    .top-bar-brand:hover {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .top-bar-brand:active {
+      transform: scale(0.96);
+    }
+
+    .top-bar-brand:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .brand-logo {
+      height: 68px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+      transition: filter 0.18s ease;
+    }
+
+    .top-bar-brand:hover .brand-logo {
+      filter: drop-shadow(0 4px 14px rgba(56, 189, 248, 0.45));
+    }
+
+    .controls-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+    }
+
+    /* Theme Switcher Toggle */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1.5px solid var(--btn-border);
+      padding: 0.42rem 0.85rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      min-width: 90px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--btn-hover-bg);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Language Dropdown Select */
+    .lang-select-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1.5px solid var(--btn-border);
+      padding: 0.42rem 1.75rem 0.42rem 0.75rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.6rem center;
+      min-width: 90px;
+      text-align: left;
+    }
+
+    .lang-select:hover {
+      background-color: var(--btn-hover-bg);
+      border-color: var(--border-strong);
+    }
+
+    .lang-select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Header title */
+    header {
+      margin-bottom: 2rem;
+    }
+
+    h1.page-title {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--text-title);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Glass Code Terminal Block */
+    .glass-terminal-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 3rem;
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1.25rem;
+      background: var(--glass-header);
+      border-bottom: 1.5px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+    }
+
+    .terminal-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot.red { background: #ef4444; opacity: 0.75; }
+    .dot.yellow { background: #f59e0b; opacity: 0.75; }
+    .dot.green { background: #22c55e; opacity: 0.75; }
+
+    .terminal-title {
+      margin-left: 0.4rem;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .terminal-meta {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .terminal-body {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    .legal-section {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+    }
+
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-title);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-text:last-child {
+      margin-bottom: 0;
+    }
+
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--tag-text);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.35rem;
+    }
+
+    .badge-chip.alert {
+      background: var(--badge-alert-bg);
+      border-color: var(--badge-alert-border);
+      color: var(--badge-alert-text);
+    }
+
+    .return-bar {
+      margin-top: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1.5px solid var(--btn-border);
+      padding: 0.6rem 1.15rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-return:hover {
+      background: var(--btn-hover-bg);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1.5px solid var(--border);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--text-title);
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      .brand-logo {
+        height: 52px;
+      }
+      .controls-group {
+        gap: 0.35rem;
+      }
+      .theme-toggle-btn,
+      .lang-select {
+        min-width: 84px;
+        font-size: 0.74rem;
+        padding: 0.36rem 0.65rem;
+      }
+      .terminal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .terminal-body {
+        padding: 1.5rem 1.15rem;
+      }
+      .return-bar {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      footer {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top utility bar with brand/logo area, theme switcher (top), and language select (bottom) -->
+    <div class="top-bar">
+      <a href="/" class="top-bar-brand" aria-label="schoolnaam.nl home" title="schoolnaam.nl — Home">
+        <img src="/logo.png" alt="RatelSlop Studios Logo" class="brand-logo" width="59" height="68">
+      </a>
+
+      <div class="controls-group">
+        <!-- Theme Switcher Button (Boven) -->
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle theme" title="Toggle dark / light mode">
+          <svg id="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="moon-icon" style="display:none;" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span id="theme-text">Light</span>
+        </button>
+
+        <!-- Language Switcher Dropdown (Onder) -->
+        <div class="lang-select-wrapper">
+          <select id="lang-select" class="lang-select" aria-label="Select language">
+            <option value="en" selected>EN</option>
+            <option value="nl">NL</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <h1 id="page-title" class="page-title">Terms of Service</h1>
+      <p id="page-desc" class="page-desc">
+        Usage conditions, individual project licensing &amp; AI disclaimer.
+      </p>
+    </header>
+
+    <!-- Main Content: Semi-Transparent Code Terminal Block -->
+    <main>
+      <article class="glass-terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-controls">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">// legal / terms_of_service.md</span>
+          </div>
+          <div class="terminal-meta">
+            <span>TERMS_VERSION: 1.0 &bull; JURISDICTION: NETHERLANDS</span>
+          </div>
+        </div>
+
+        <div class="terminal-body">
+          <!-- Section 1: Acceptance -->
+          <section class="legal-section">
+            <span class="section-tag">01 // agreement</span>
+            <h2 id="sec1-title" class="section-title">Acceptance of Terms</h2>
+            <p id="sec1-p1" class="section-text">
+              By accessing or using schoolnaam.nl, its subdomains, or any software, experiments, tools, and demos operated by RatelSlop Studios, you agree to be bound by these Terms of Service. If you do not agree with these terms, you should discontinue using the website and its services.
+            </p>
+          </section>
+
+          <!-- Section 2: Project Licenses & Intellectual Property -->
+          <section class="legal-section">
+            <span class="section-tag">02 // licensing_model</span>
+            <h2 id="sec2-title" class="section-title">Project Licenses &amp; GitHub Repositories</h2>
+            <p id="sec2-p1" class="section-text">
+              <strong>Website Branding:</strong> The design, layout, logo, domain, and branding of schoolnaam.nl and RatelSlop Studios are the property of RatelSlop Studios, with all rights reserved.
+            </p>
+            <p id="sec2-p2" class="section-text">
+              <strong>Individual Project Licenses:</strong> Software projects, repositories, and applications showcased on this website are distributed under their own distinct licenses. <em>The specific license governing code usage, redistribution, modification, attribution, or commercial restrictions is defined individually in the <code>LICENSE</code> file of each respective project repository on GitHub.</em>
+            </p>
+            <p id="sec2-p3" class="section-text">
+              You must consult the repository of the specific project you intend to use or contribute to. If a repository does not contain an explicit open-source license, all rights are reserved to RatelSlop Studios by default.
+            </p>
+            <span class="badge-chip">&#128220; LICENSE RULES DEFINED PER GITHUB REPO</span>
+          </section>
+
+          <!-- Section 3: "As-Is" Hobby Disclaimer -->
+          <section class="legal-section">
+            <span class="section-tag">03 // as_is_warranty</span>
+            <h2 id="sec3-title" class="section-title">Experimental "As-Is" Nature</h2>
+            <p id="sec3-p1" class="section-text">
+              schoolnaam.nl serves as a hub for hobby projects, student experiments, and experimental web apps. Everything provided on this website is offered strictly on an <strong>"AS-IS"</strong> and <strong>"AS-AVAILABLE"</strong> basis without warranties of any kind, whether express, implied, statutory, or otherwise.
+            </p>
+            <p id="sec3-p2" class="section-text">
+              We do not guarantee continuous uptime, error-free operation, data retention, or fitness for any particular purpose. Experiments may be updated, altered, or discontinued at any time without prior notice.
+            </p>
+            <span class="badge-chip alert">&#9888; HOBBY PROJECTS • NO WARRANTY</span>
+          </section>
+
+          <!-- Section 4: AI Slop & Machine Generation Disclaimer -->
+          <section class="legal-section">
+            <span class="section-tag">04 // ai_disclaimer</span>
+            <h2 id="sec4-title" class="section-title">AI Slop &amp; Output Disclaimer</h2>
+            <p id="sec4-p1" class="section-text">
+              Several applications on this platform incorporate artificial intelligence (AI), machine learning models, or automated synthetic content generation (fondly referred to as "AI slop").
+            </p>
+            <p id="sec4-p2" class="section-text">
+              You acknowledge that AI models may hallucinate, output erroneous facts, produce unintended results, or generate absurd statements. You are solely responsible for verifying and evaluating any output before relying on it. Never rely on AI slop for legal, medical, financial, or safety-critical decisions.
+            </p>
+            <span class="badge-chip alert">&#9889; AI OUTPUTS MAY HALLUCINATE</span>
+          </section>
+
+          <!-- Section 5: Limitation of Liability -->
+          <section class="legal-section">
+            <span class="section-tag">05 // liability</span>
+            <h2 id="sec5-title" class="section-title">Limitation of Liability</h2>
+            <p id="sec5-p1" class="section-text">
+              To the fullest extent permitted by applicable law, RatelSlop Studios, its maintainers, contributors, and authors shall not be liable for any direct, indirect, incidental, consequential, special, or exemplary damages, including but not limited to loss of data, loss of profits, equipment damage, or service interruptions resulting from your use of or inability to use this website or its projects.
+            </p>
+          </section>
+
+          <!-- Section 6: Acceptable Use & Changes -->
+          <section class="legal-section">
+            <span class="section-tag">06 // conduct</span>
+            <h2 id="sec6-title" class="section-title">Acceptable Use &amp; Amendments</h2>
+            <p id="sec6-p1" class="section-text">
+              You agree not to disrupt or attempt to compromise the integrity, availability, or security of this website. We reserve the right to revise these Terms of Service at any time by updating this page. Continued use following changes implies acceptance.
+            </p>
+          </section>
+
+          <!-- Return link bar -->
+          <div class="return-bar">
+            <a href="/" class="btn-return">
+              &larr; Back to schoolnaam.nl
+            </a>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-dim);">
+              <a href="/privacy/" style="color: var(--accent); text-decoration: none;">View Privacy Policy &rarr;</a>
+            </span>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <span>schoolnaam.nl &bull; RatelSlop Studios</span>
+      <div class="footer-links">
+        <a href="/privacy/">Privacy</a>
+        <span>&bull;</span>
+        <a href="/terms/" style="color: var(--text-title); text-decoration: underline;">Terms</a>
+      </div>
+      <a href="https://github.com/RatelSlop" target="_blank" rel="noopener noreferrer">github.com/RatelSlop</a>
+    </footer>
+  </div>
+
+  <script>
+    // --- TRANSLATIONS (i18n) ---
+    const TRANSLATIONS = {
+      en: {
+        pageTitle: 'Terms of Service',
+        pageDesc: 'Usage conditions, individual project licensing & AI disclaimer.',
+        sec1Title: 'Acceptance of Terms',
+        sec1P1: 'By accessing or using schoolnaam.nl, its subdomains, or any software, experiments, tools, and demos operated by RatelSlop Studios, you agree to be bound by these Terms of Service. If you do not agree with these terms, you should discontinue using the website and its services.',
+        sec2Title: 'Project Licenses & GitHub Repositories',
+        sec2P1: '<strong>Website Branding:</strong> The design, layout, logo, domain, and branding of schoolnaam.nl and RatelSlop Studios are the property of RatelSlop Studios, with all rights reserved.',
+        sec2P2: '<strong>Individual Project Licenses:</strong> Software projects, repositories, and applications showcased on this website are distributed under their own distinct licenses. <em>The specific license governing code usage, redistribution, modification, attribution, or commercial restrictions is defined individually in the <code>LICENSE</code> file of each respective project repository on GitHub.</em>',
+        sec2P3: 'You must consult the repository of the specific project you intend to use or contribute to. If a repository does not contain an explicit open-source license, all rights are reserved to RatelSlop Studios by default.',
+        sec3Title: 'Experimental "As-Is" Nature',
+        sec3P1: 'schoolnaam.nl serves as a hub for hobby projects, student experiments, and experimental web apps. Everything provided on this website is offered strictly on an <strong>"AS-IS"</strong> and <strong>"AS-AVAILABLE"</strong> basis without warranties of any kind, whether express, implied, statutory, or otherwise.',
+        sec3P2: 'We do not guarantee continuous uptime, error-free operation, data retention, or fitness for any particular purpose. Experiments may be updated, altered, or discontinued at any time without prior notice.',
+        sec4Title: 'AI Slop & Output Disclaimer',
+        sec4P1: 'Several applications on this platform incorporate artificial intelligence (AI), machine learning models, or automated synthetic content generation (fondly referred to as "AI slop").',
+        sec4P2: 'You acknowledge that AI models may hallucinate, output erroneous facts, produce unintended results, or generate absurd statements. You are solely responsible for verifying and evaluating any output before relying on it. Never rely on AI slop for legal, medical, financial, or safety-critical decisions.',
+        sec5Title: 'Limitation of Liability',
+        sec5P1: 'To the fullest extent permitted by applicable law, RatelSlop Studios, its maintainers, contributors, and authors shall not be liable for any direct, indirect, incidental, exemplary, or consequential damages (including loss of data, loss of profits, equipment damage, or service interruptions) resulting from your use of or inability to use this website or its projects.',
+        sec6Title: 'Acceptable Use & Amendments',
+        sec6P1: 'You agree not to disrupt or attempt to compromise the integrity, availability, or security of this website. We reserve the right to revise these Terms of Service at any time by updating this page. Continued use following changes implies acceptance.',
+        themeLight: 'Light',
+        themeDark: 'Dark'
+      },
+      nl: {
+        pageTitle: 'Gebruiksvoorwaarden (Terms)',
+        pageDesc: 'Voorwaarden, projectlicenties per GitHub-repo & AI disclaimer.',
+        sec1Title: 'Aanvaarding van de Voorwaarden',
+        sec1P1: 'Door het bezoeken of gebruiken van schoolnaam.nl, eventuele subdomeinen, of software, experimenten, tools en demo’s beheerd door RatelSlop Studios, ga je akkoord met deze Gebruiksvoorwaarden. Indien je niet akkoord gaat, verzoeken we je het gebruik van de site en tools te staken.',
+        sec2Title: 'Projectlicenties & GitHub Repositories',
+        sec2P1: '<strong>Website Branding:</strong> Het ontwerp, de huisstijl, logo’s, domeinnamen en branding van schoolnaam.nl en RatelSlop Studios zijn eigendom van RatelSlop Studios (alle rechten voorbehouden).',
+        sec2P2: '<strong>Individuele Projectlicenties:</strong> Softwareprojecten, repositories en applicaties die op deze hub worden getoond, vallen elk onder hun eigen specifieke licentievoorwaarden. <em>De toepasselijke licentie m.b.t. codegebruik, herdistributie, wijzigingen, naamsvermelding of commerciële restricties staat expliciet gedefinieerd in het betreffende <code>LICENSE</code>-bestand in de bijbehorende GitHub repository.</em>',
+        sec2P3: 'Raadpleeg altijd de repository van het specifieke project dat je wilt gebruiken of forken. Bevat een repository geen expliciete open-source licentie, dan berusten alle rechten standaard bij RatelSlop Studios.',
+        sec3Title: 'Experimenteel "As-Is" Karakter (Hobby)',
+        sec3P1: 'schoolnaam.nl fungeert als hub voor hobbyprojecten, experimenten en prototypes. Alles op deze website wordt uitsluitend aangeboden op <strong>"AS-IS"</strong> (in de staat waarin het zich bevindt) en <strong>"AS-AVAILABLE"</strong> basis, zonder enige vorm van garantie op uptime, bug-vrije werking of geschiktheid voor enig specifiek doel.',
+        sec3P2: 'Projecten kunnen op ieder moment zonder voorafgaande kennisgeving worden aangepast, gereset of offline worden gehaald.',
+        sec4Title: 'AI Slop & Machine-Generatie Disclaimer',
+        sec4P1: 'Diverse applicaties op deze site maken gebruik van kunstmatige intelligentie (AI), neurale modellen of geautomatiseerde generatie-algoritmes (met een knipoog aangeduid als "AI slop").',
+        sec4P2: 'Je erkent dat AI-modellen kunnen hallucineren, feitelijk onjuiste gegevens kunnen genereren of onvoorspelbare resultaten kunnen leveren. Je bent te allen tijde zelf verantwoordelijk voor het controleren en toepassen van de output. Vertrouw nooit op AI slop voor medische, juridische, financiële of veiligheidskritische beslissingen.',
+        sec5Title: 'Beperking van Aansprakelijkheid',
+        sec5P1: 'Voor zover maximaal toegestaan door de toepasselijke wetgeving is RatelSlop Studios, inclusief ontwikkelaars en beheerders, op geen enkele wijze aansprakelijk voor enige directe, indirecte, incidentele of gevolgschade (waaronder dataverlies, gederfde winst, hardwarefouten of uitval) voortvloeiend uit het gebruik of het niet kunnen gebruiken van deze website of projecten.',
+        sec6Title: 'Toegestaan Gebruik & Wijzigingen',
+        sec6P1: 'Het is niet toegestaan de website of onderliggende infrastructuur te overbelasten, te verstoren of te misbruiken. Wij behouden ons het recht voor deze voorwaarden tussentijds te actualiseren. Voortgezet gebruik geldt als instemming met de gewijzigde voorwaarden.',
+        themeLight: 'Licht',
+        themeDark: 'Donker'
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+
+      const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      document.getElementById('page-title').textContent = t.pageTitle;
+      document.getElementById('page-desc').textContent = t.pageDesc;
+      document.getElementById('sec1-title').textContent = t.sec1Title;
+      document.getElementById('sec1-p1').textContent = t.sec1P1;
+      document.getElementById('sec2-title').textContent = t.sec2Title;
+      document.getElementById('sec2-p1').innerHTML = t.sec2P1;
+      document.getElementById('sec2-p2').innerHTML = t.sec2P2;
+      document.getElementById('sec2-p3').textContent = t.sec2P3;
+      document.getElementById('sec3-title').textContent = t.sec3Title;
+      document.getElementById('sec3-p1').innerHTML = t.sec3P1;
+      document.getElementById('sec3-p2').textContent = t.sec3P2;
+      document.getElementById('sec4-title').textContent = t.sec4Title;
+      document.getElementById('sec4-p1').textContent = t.sec4P1;
+      document.getElementById('sec4-p2').textContent = t.sec4P2;
+      document.getElementById('sec5-title').textContent = t.sec5Title;
+      document.getElementById('sec5-p1').textContent = t.sec5P1;
+      document.getElementById('sec6-title').textContent = t.sec6Title;
+      document.getElementById('sec6-p1').textContent = t.sec6P1;
+
+      // Update theme toggle label
+      const activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      document.getElementById('theme-text').textContent = activeTheme === 'light' ? t.themeDark : t.themeLight;
+
+      // Update select value
+      const langSelect = document.getElementById('lang-select');
+      if (langSelect && langSelect.value !== lang) {
+        langSelect.value = lang;
+      }
+    }
+
+    const langSelect = document.getElementById('lang-select');
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    // Theme toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const themeText = document.getElementById('theme-text');
+
+    function updateToggleButton(theme) {
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+      if (theme === 'light') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        themeText.textContent = t.themeDark;
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+        themeText.textContent = t.themeLight;
+      }
+    }
+
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    updateToggleButton(currentTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const targetTheme = activeTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', targetTheme);
+      localStorage.setItem('theme', targetTheme);
+      updateToggleButton(targetTheme);
+    });
+
+    // Init
+    applyLanguage(currentLang);
+  </script>
+</body>
+</html>
