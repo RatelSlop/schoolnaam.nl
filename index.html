@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>schoolnaam</title>
-  <meta name="description" content="schoolnaam — verzameling van hobbyprojecten, experimenten en ai slop door RatelSlop Studios.">
+  <meta name="description" content="schoolnaam — directory of hobby projects, experimental web apps, and AI slop by RatelSlop Studios.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -153,6 +153,49 @@
       border-radius: 50%;
       background: var(--status-dot);
       box-shadow: 0 0 8px var(--status-dot);
+    }
+
+    .controls-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    /* Language Dropdown Select */
+    .lang-select-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1.5px solid var(--btn-border);
+      padding: 0.45rem 1.75rem 0.45rem 0.75rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.55rem center;
+    }
+
+    .lang-select:hover {
+      background-color: var(--btn-hover-bg);
+      border-color: var(--border-strong);
+    }
+
+    .lang-select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* Theme Switcher Toggle */
@@ -369,7 +412,7 @@
       border-collapse: collapse;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.88rem;
-      display: none; /* Wordt actief zodra public project repos geladen zijn */
+      display: none;
     }
 
     .repo-table th {
@@ -512,49 +555,60 @@
 </head>
 <body>
   <div class="container">
-    <!-- Top utility bar met automatische & handmatige theme switcher -->
+    <!-- Top utility bar with status, language select, and theme switcher -->
     <div class="top-bar">
       <div class="status-indicator">
         <span class="status-dot"></span>
-        <span>schoolnaam.nl // active</span>
+        <span id="status-text">schoolnaam.nl // active</span>
       </div>
 
-      <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Wissel thema" title="Wissel dark / light mode">
-        <!-- Sun icon (in dark mode) -->
-        <svg id="sun-icon" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <!-- Moon icon (in light mode) -->
-        <svg id="moon-icon" style="display:none;" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <span id="theme-text">Light</span>
-      </button>
+      <div class="controls-group">
+        <!-- Language Switcher Dropdown (EN / NL) -->
+        <div class="lang-select-wrapper">
+          <select id="lang-select" class="lang-select" aria-label="Select language">
+            <option value="en" selected>EN</option>
+            <option value="nl">NL</option>
+          </select>
+        </div>
+
+        <!-- Theme Switcher Button -->
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle theme" title="Toggle dark / light mode">
+          <!-- Sun icon (shown in dark mode to switch to light) -->
+          <svg id="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon icon (shown in light mode to switch to dark) -->
+          <svg id="moon-icon" style="display:none;" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span id="theme-text">Light</span>
+        </button>
+      </div>
     </div>
 
     <!-- Header -->
     <header>
       <h1 class="site-title">schoolnaam</h1>
-      <p class="site-desc">
-        Hub voor hobbyprojecten, experimentele web apps en AI slop.
+      <p id="site-desc" class="site-desc">
+        Hub for hobby projects, experimental web apps, and AI slop.
       </p>
     </header>
 
-    <!-- Content / Categorieën -->
+    <!-- Main Content -->
     <main>
       <section class="category-section">
         <div class="category-header">
           <div class="category-title">
             <span class="category-name">RatelSlop</span>
-            <span class="category-tag">studio</span>
+            <span id="category-tag" class="category-tag">studio</span>
           </div>
 
           <a href="https://github.com/RatelSlop" target="_blank" rel="noopener noreferrer" class="github-link">
@@ -562,36 +616,37 @@
             <svg viewBox="0 0 24 24">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
             </svg>
-            <span>RatelSlop Studios &nearr;</span>
+            <span id="github-btn-text">RatelSlop Studios &nearr;</span>
           </a>
         </div>
 
-        <!-- Polished Coming Soon State (actief zolang er geen project repos zijn) -->
+        <!-- Polished Coming Soon State (shown if no repositories exist) -->
         <div id="coming-soon-container" class="coming-soon-container">
           <div class="coming-soon-badge">
             <span class="pulse-dot"></span>
-            coming soon
+            <span id="coming-soon-badge-text">coming soon</span>
           </div>
-          <h3 class="coming-soon-title">Projecten &amp; tools in de maak</h3>
-          <p class="coming-soon-desc">
-            We bouwen momenteel aan nieuwe hobby experimenten en AI slop. Zodra een repository openbaar wordt op GitHub, verschijnt deze hier direct in het overzicht.
+          <h3 id="coming-soon-title" class="coming-soon-title">Projects &amp; tools in the making</h3>
+          <p id="coming-soon-desc" class="coming-soon-desc">
+            We're currently building new hobby experiments and AI slop. Once a repository is published on GitHub, it will appear here automatically.
           </p>
           <div class="coming-soon-sync">
             <span>&bull;</span>
-            <span>gekoppeld aan <a href="https://github.com/RatelSlop" target="_blank" rel="noopener noreferrer">github.com/RatelSlop</a></span>
+            <span id="coming-soon-sync-label">connected to</span>
+            <a href="https://github.com/RatelSlop" target="_blank" rel="noopener noreferrer">github.com/RatelSlop</a>
           </div>
         </div>
 
-        <!-- Repo tabel: verschijnt automatisch zodra er public repos worden gepusht -->
+        <!-- Repository Table (displayed when public repos are available) -->
         <table id="repo-table" class="repo-table">
           <thead>
             <tr>
-              <th>App / Repository</th>
-              <th style="width: 140px; text-align: right;">Status</th>
+              <th id="th-app">App / Repository</th>
+              <th id="th-status" style="width: 140px; text-align: right;">Status</th>
             </tr>
           </thead>
           <tbody id="repo-list">
-            <!-- Dynamische rijen worden hier via JavaScript ingeladen -->
+            <!-- Dynamically populated via JavaScript -->
           </tbody>
         </table>
       </section>
@@ -604,8 +659,80 @@
     </footer>
   </div>
 
-  <!-- Theme Toggle & GitHub Repos Fetch Script -->
+  <!-- Scripts: Language I18n, Theme Toggle & GitHub Fetch -->
   <script>
+    // --- TRANSLATIONS (i18n) ---
+    const TRANSLATIONS = {
+      en: {
+        statusText: 'schoolnaam.nl // active',
+        siteDesc: 'Hub for hobby projects, experimental web apps, and AI slop.',
+        categoryTag: 'studio',
+        comingSoonBadge: 'coming soon',
+        comingSoonTitle: 'Projects & tools in the making',
+        comingSoonDesc: "We're currently building new hobby experiments and AI slop. Once a repository is published on GitHub, it will appear here automatically.",
+        comingSoonSync: 'connected to',
+        thApp: 'App / Repository',
+        thStatus: 'Status',
+        noDesc: 'No description provided.',
+        themeLight: 'Light',
+        themeDark: 'Dark'
+      },
+      nl: {
+        statusText: 'schoolnaam.nl // actief',
+        siteDesc: 'Hub voor hobbyprojecten, experimentele web apps en AI slop.',
+        categoryTag: 'studio',
+        comingSoonBadge: 'coming soon',
+        comingSoonTitle: 'Projecten & tools in de maak',
+        comingSoonDesc: 'We bouwen momenteel aan nieuwe hobby experimenten en AI slop. Zodra een repository openbaar wordt op GitHub, verschijnt deze hier direct in het overzicht.',
+        comingSoonSync: 'gekoppeld aan',
+        thApp: 'App / Repository',
+        thStatus: 'Status',
+        noDesc: 'Geen beschrijving opgegeven.',
+        themeLight: 'Licht',
+        themeDark: 'Donker'
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+    let loadedRepos = null;
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+
+      const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      document.getElementById('status-text').textContent = t.statusText;
+      document.getElementById('site-desc').textContent = t.siteDesc;
+      document.getElementById('category-tag').textContent = t.categoryTag;
+      document.getElementById('coming-soon-badge-text').textContent = t.comingSoonBadge;
+      document.getElementById('coming-soon-title').textContent = t.comingSoonTitle;
+      document.getElementById('coming-soon-desc').textContent = t.comingSoonDesc;
+      document.getElementById('coming-soon-sync-label').textContent = t.comingSoonSync;
+      document.getElementById('th-app').textContent = t.thApp;
+      document.getElementById('th-status').textContent = t.thStatus;
+
+      // Update theme toggle label
+      const activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      document.getElementById('theme-text').textContent = activeTheme === 'light' ? t.themeDark : t.themeLight;
+
+      // Update select value
+      const langSelect = document.getElementById('lang-select');
+      if (langSelect && langSelect.value !== lang) {
+        langSelect.value = lang;
+      }
+
+      // Re-render repositories if already loaded
+      if (loadedRepos) {
+        renderRepos(loadedRepos);
+      }
+    }
+
+    const langSelect = document.getElementById('lang-select');
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
     // --- THEME TOGGLE LOGIC ---
     const toggleBtn = document.getElementById('theme-toggle');
     const sunIcon = document.getElementById('sun-icon');
@@ -613,14 +740,15 @@
     const themeText = document.getElementById('theme-text');
 
     function updateToggleButton(theme) {
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
       if (theme === 'light') {
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'block';
-        themeText.textContent = 'Dark';
+        themeText.textContent = t.themeDark;
       } else {
         sunIcon.style.display = 'block';
         moonIcon.style.display = 'none';
-        themeText.textContent = 'Light';
+        themeText.textContent = t.themeLight;
       }
     }
 
@@ -646,9 +774,9 @@
 
     // --- GITHUB REPOS AUTO PULL LOGIC ---
     const GITHUB_ORG = 'RatelSlop';
-    const CACHE_KEY = 'ratelslop_repos_cache_v3';
-    const CACHE_TIME_KEY = 'ratelslop_repos_cache_time_v3';
-    const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minuten cache
+    const CACHE_KEY = 'ratelslop_repos_cache_v4';
+    const CACHE_TIME_KEY = 'ratelslop_repos_cache_time_v4';
+    const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minute cache
 
     function escapeHtml(str) {
       if (!str) return '';
@@ -672,7 +800,7 @@
         try {
           return JSON.parse(cachedData);
         } catch (e) {
-          // parse fout, ga door naar netwerk
+          // parse error, proceed to network
         }
       }
 
@@ -688,7 +816,7 @@
           return repos;
         }
       } catch (err) {
-        console.warn('Kon GitHub repos niet ophalen:', err);
+        console.warn('Could not fetch GitHub repos:', err);
         if (cachedData) {
           try {
             return JSON.parse(cachedData);
@@ -699,9 +827,11 @@
     }
 
     function renderRepos(repos) {
+      loadedRepos = repos;
       if (!repos || !Array.isArray(repos)) return;
 
-      // Filter alleen interne meta-repositories zoals '.github'
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+      // Filter out meta-repos like '.github'
       const publicProjectRepos = repos.filter(repo => !repo.name.startsWith('.'));
       
       const comingSoonContainer = document.getElementById('coming-soon-container');
@@ -709,14 +839,13 @@
       const tbody = document.getElementById('repo-list');
 
       if (publicProjectRepos.length > 0) {
-        // Verberg coming-soon en toon de tabel
         if (comingSoonContainer) comingSoonContainer.style.display = 'none';
         if (repoTable) repoTable.style.display = 'table';
         tbody.innerHTML = '';
 
         publicProjectRepos.forEach(repo => {
           const tr = document.createElement('tr');
-          const description = repo.description ? escapeHtml(repo.description) : 'Geen beschrijving opgegeven.';
+          const description = repo.description ? escapeHtml(repo.description) : t.noDesc;
           const name = escapeHtml(repo.name);
           const url = escapeHtml(repo.html_url);
           const lang = repo.language ? `<span class="repo-meta-tag">${escapeHtml(repo.language)}</span>` : '';
@@ -742,13 +871,13 @@
           tbody.appendChild(tr);
         });
       } else {
-        // Geen project repos gevonden: behoud de nette coming-soon container
         if (comingSoonContainer) comingSoonContainer.style.display = 'flex';
         if (repoTable) repoTable.style.display = 'none';
       }
     }
 
-    // Start auto pull
+    // Apply default language and fetch repos
+    applyLanguage(currentLang);
     fetchGitHubRepos().then(repos => renderRepos(repos));
   </script>
 </body>
