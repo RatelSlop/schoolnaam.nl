@@ -6,6 +6,10 @@
   <title>schoolnaam</title>
   <meta name="description" content="schoolnaam — verzameling van hobbyprojecten, experimenten en ai slop door RatelSlop Studios.">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+
   <!-- Voorkom flikkering van thema bij het laden -->
   <script>
     (function() {
@@ -642,8 +646,8 @@
 
     // --- GITHUB REPOS AUTO PULL LOGIC ---
     const GITHUB_ORG = 'RatelSlop';
-    const CACHE_KEY = 'ratelslop_repos_cache_v2';
-    const CACHE_TIME_KEY = 'ratelslop_repos_cache_time_v2';
+    const CACHE_KEY = 'ratelslop_repos_cache_v3';
+    const CACHE_TIME_KEY = 'ratelslop_repos_cache_time_v3';
     const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minuten cache
 
     function escapeHtml(str) {
@@ -697,8 +701,8 @@
     function renderRepos(repos) {
       if (!repos || !Array.isArray(repos)) return;
 
-      // Filter interne repositories zoals '.github' en eventueel de website repo zelf indien gewenst
-      const publicProjectRepos = repos.filter(repo => !repo.name.startsWith('.') && repo.name.toLowerCase() !== 'schoolnaam.nl');
+      // Filter alleen interne meta-repositories zoals '.github'
+      const publicProjectRepos = repos.filter(repo => !repo.name.startsWith('.'));
       
       const comingSoonContainer = document.getElementById('coming-soon-container');
       const repoTable = document.getElementById('repo-table');
