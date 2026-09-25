@@ -28,3 +28,11 @@ build/
 .cache/
 *.log
 npm-debug.log*
+
+# AI agent memory & instructions (local only)
+GEMINI.md
+AGENTS.md
+.agents/
+.agent/
+.gemini/
+
