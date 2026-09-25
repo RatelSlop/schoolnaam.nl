@@ -110,20 +110,40 @@
       margin-bottom: 3.5rem;
     }
 
-    .status-indicator {
-      display: flex;
+    .top-bar-brand {
+      display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      color: var(--text-muted);
-      font-weight: 500;
+      gap: 0.65rem;
+      text-decoration: none;
+      padding: 0.25rem;
+      border-radius: 10px;
+      transition: transform 0.18s ease, filter 0.18s ease;
+      cursor: pointer;
     }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--status-dot);
-      box-shadow: 0 0 8px var(--status-dot);
+    .top-bar-brand:hover {
+      transform: translateY(-1px) scale(1.04);
+    }
+
+    .top-bar-brand:active {
+      transform: scale(0.96);
+    }
+
+    .top-bar-brand:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .brand-logo {
+      height: 42px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.22));
+      transition: filter 0.18s ease;
+    }
+
+    .top-bar-brand:hover .brand-logo {
+      filter: drop-shadow(0 4px 12px rgba(56, 189, 248, 0.4));
     }
 
     .theme-toggle-btn {
@@ -261,9 +281,9 @@
 <body>
   <div class="container">
     <div class="top-bar">
-      <div class="top-bar-brand" id="top-bar-brand">
-        <!-- Logo placeholder -->
-      </div>
+      <a href="/" class="top-bar-brand" aria-label="schoolnaam.nl home" title="schoolnaam.nl — Home">
+        <img src="/logo.png" alt="RatelSlop Studios Logo" class="brand-logo" width="40" height="46">
+      </a>
 
       <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle theme">
         <svg id="sun-icon" viewBox="0 0 24 24">
