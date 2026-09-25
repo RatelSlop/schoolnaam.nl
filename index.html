@@ -579,11 +579,10 @@
 </head>
 <body>
   <div class="container">
-    <!-- Top utility bar with status, language select, and theme switcher -->
+    <!-- Top utility bar with brand/logo area, language select, and theme switcher -->
     <div class="top-bar">
-      <div class="status-indicator">
-        <span class="status-dot"></span>
-        <span id="status-text">schoolnaam.nl // active</span>
+      <div class="top-bar-brand" id="top-bar-brand">
+        <!-- Logo placeholder -->
       </div>
 
       <div class="controls-group">
@@ -732,7 +731,8 @@
       document.documentElement.lang = lang;
 
       const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
-      document.getElementById('status-text').textContent = t.statusText;
+      const statusTextEl = document.getElementById('status-text');
+      if (statusTextEl) statusTextEl.textContent = t.statusText;
       document.getElementById('site-desc').textContent = t.siteDesc;
       document.getElementById('category-tag').textContent = t.categoryTag;
       document.getElementById('coming-soon-badge-text').textContent = t.comingSoonBadge;
@@ -907,7 +907,6 @@
         moreRow.innerHTML = `
           <td>
             <div class="more-projects-wrapper">
-              <span class="pulse-dot"></span>
               <span>${t.moreProjectsTitle}</span>
             </div>
             <p class="project-desc">${t.moreProjectsDesc}</p>
