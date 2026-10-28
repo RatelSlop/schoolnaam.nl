@@ -21,6 +21,7 @@ Open de gemelde lokale URL. `npm test` controleert het verwerken van onbetrouwba
 - Build: `npm run build`.
 - Uitvoermap: `dist`.
 - Domeinen: `schoolnaam.nl` en `www.schoolnaam.nl` (redirect naar hoofddomein).
+- De www-redirect wordt via een Cloudflare zone Redirect Rule geregeld, met behoud van pad en querystring.
 - GitHub Pages wordt voor deze website niet gebruikt.
 
 De `src/`-templates worden door `scripts/build.mjs` gecombineerd met de gedeelde header, footer en een openbaar reserveoverzicht. Alleen `dist/` wordt gehost; broncode, tests en instellingen worden niet als sitebestanden gepubliceerd.
