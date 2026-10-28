@@ -1,0 +1,14 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.schoolnaam.nl; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'; upgrade-insecure-requests
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*.mjs
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/*.js
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/*.css
+  Cache-Control: public, max-age=0, must-revalidate
