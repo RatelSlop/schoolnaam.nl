@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeProjects, selectProjects, projectCard, safeHomepage } from '../public/assets/projects.mjs';
+import { normalizeProjects, selectProjects, projectCard, safeHomepage, skeletonCard, skeletonCards } from '../public/assets/projects.mjs';
 
 const record = (name, more = {}) => ({ name, private: false, languages: ['TypeScript'], ...more });
 test('excludes private and meta repos and only trusts canonical source URLs', () => {
@@ -30,4 +30,12 @@ test('search, mutually exclusive filters and sorting combine without mutating th
   assert.deepEqual(selectProjects(projects, { filter: 'source' }).map(p => p.name), ['Zulu']);
   assert.deepEqual(selectProjects(projects, { query: 'typescript', sort: 'name' }).map(p => p.name), ['Alpha', 'Zulu']);
   assert.deepEqual(projects.map(p => p.name), ['Zulu', 'Alpha']);
+});
+test('generates accessible skeleton cards for the loading state', () => {
+  const single = skeletonCard();
+  assert.ok(single.includes('project-card-skeleton'));
+  assert.ok(single.includes('aria-hidden="true"'));
+  assert.ok(single.includes('skeleton-block'));
+  const multiple = skeletonCards(4);
+  assert.equal((multiple.match(/project-card-skeleton/g) || []).length, 4);
 });

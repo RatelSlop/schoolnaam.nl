@@ -45,7 +45,7 @@ export function selectProjects(projects, { query = '', filter = 'all', sort = 'r
   return sort === 'name' ? result.sort((a, b) => a.name.localeCompare(b.name, 'nl', { sensitivity: 'base' })) : result;
 }
 
-export function projectCard(repo, index) {
+export function projectCard(repo, index = 0) {
   const name = escapeHtml(repo.name);
   const homepage = safeHomepage(repo.homepage);
   const source = `https://github.com/RatelSlop/${encodeURIComponent(repo.name)}`;
@@ -59,4 +59,28 @@ export function projectCard(repo, index) {
       ? `<a class="visit-link" href="${escapeHtml(homepage)}" target="_blank" rel="noopener noreferrer" aria-label="Open website van ${name}">Open website <span aria-hidden="true">↗</span></a><a class="source-link" href="${source}" target="_blank" rel="noopener noreferrer" aria-label="Broncode van ${name}">Broncode</a>`
       : `<a class="visit-link" href="${source}" target="_blank" rel="noopener noreferrer" aria-label="Bekijk broncode van ${name}">Bekijk broncode <span aria-hidden="true">↗</span></a>`}</div>
   </article>`;
+}
+
+export function skeletonCard() {
+  return `<article class="project-card project-card-skeleton" aria-hidden="true">
+    <div class="card-top"><div class="skeleton-block skeleton-glyph"></div><div class="skeleton-block skeleton-kind"></div></div>
+    <div class="skeleton-block skeleton-title"></div>
+    <div class="skeleton-description-group">
+      <div class="skeleton-block skeleton-line line-full"></div>
+      <div class="skeleton-block skeleton-line line-med"></div>
+      <div class="skeleton-block skeleton-line line-short"></div>
+    </div>
+    <div class="skeleton-tags">
+      <div class="skeleton-block skeleton-tag"></div>
+      <div class="skeleton-block skeleton-tag"></div>
+    </div>
+    <div class="card-bottom">
+      <div class="skeleton-block skeleton-btn"></div>
+      <div class="skeleton-block skeleton-btn-sm"></div>
+    </div>
+  </article>`;
+}
+
+export function skeletonCards(count = 6) {
+  return Array.from({ length: count }, () => skeletonCard()).join('\n');
 }

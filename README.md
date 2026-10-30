@@ -24,7 +24,7 @@ Open de gemelde lokale URL. `npm test` controleert het verwerken van onbetrouwba
 - De www-redirect wordt via een Cloudflare zone Redirect Rule geregeld, met behoud van pad en querystring.
 - GitHub Pages wordt voor deze website niet gebruikt.
 
-De `src/`-templates worden door `scripts/build.mjs` gecombineerd met de gedeelde header, footer en een openbaar reserveoverzicht. Alleen `dist/` wordt gehost; broncode, tests en instellingen worden niet als sitebestanden gepubliceerd.
+De `src/`-templates worden door `scripts/build.mjs` gecombineerd met de gedeelde header, footer en een geanimeerd laadskelet. Alleen `dist/` wordt gehost; broncode, tests en instellingen worden niet als sitebestanden gepubliceerd.
 
 ## Project-API
 
@@ -32,7 +32,7 @@ De browser vraagt uitsluitend `https://api.schoolnaam.nl/repos` op. Dit is een e
 
 Alle repositoryprojecten verschijnen samen onder RatelSlop. De API bepaalt namen, beschrijvingen, talen, archiefstatus en homepages; er is geen handmatige lijst met uitgelichte projecten. Zoekopdrachten en filters blijven in de browser. Privérepositories en meta-repositories worden uitgesloten, broncode-URL's worden canoniek opgebouwd en homepages worden gevalideerd.
 
-Bij een fout toont de site het meegeleverde openbare overzicht uit `public/assets/repos-snapshot.json`, met een duidelijke melding dat het verouderd kan zijn. De browser probeert niet alsnog de GitHub API of api.ratelslop.studio. Een geldige lege API-lijst toont een echte lege staat. Werk het reservebestand en de datum in `scripts/build.mjs` samen bij wanneer dat nodig is.
+Tijdens het laden toont de site een geanimeerd laadskelet (skeleton). Zodra de projecten via de API zijn binnengekomen, worden deze direct getoond. Bij een verbindingsfout toont de site een duidelijke foutmelding met een knop om het opnieuw te proberen. Wanneer de API succesvol laadt maar geen openbare projecten bevat, toont de site netjes dat er binnenkort nieuwe projecten aankomen.
 
 Cloudflare-hosting van het overzicht verhuist de afzonderlijke projectwebsites niet. Projectlinks openen de website die in de repositorymetadata is ingesteld; die kan nog op GitHub Pages of een andere aanbieder staan. Bereikbaarheid op een schoolnetwerk moet op dat netwerk worden getest.
 

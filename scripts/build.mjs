@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, cp } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { normalizeProjects, projectCard } from '../public/assets/projects.mjs';
+import { skeletonCards } from '../public/assets/projects.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const out = path.join(root, 'dist');
@@ -9,11 +9,11 @@ const githubIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a1
 const brand = '<span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>schoolnaam<span class="brand-dot">.nl</span></span>';
 const header = `<a class="skip-link" href="#main">Direct naar inhoud</a><header class="site-header wrap"><a class="brand" href="/" aria-label="schoolnaam.nl — home">${brand}</a><div class="header-right"><nav class="nav-links" aria-label="Hoofdnavigatie"><a href="/#ratelslop">Projecten</a><a href="/#over">Over</a><a class="nav-github" href="https://github.com/RatelSlop/schoolnaam.nl" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav><button type="button" id="theme-toggle" class="theme-button" aria-label="Wissel kleurthema" title="Wissel kleurthema"><span aria-hidden="true">◐</span></button></div></header>`;
 const footer = `<footer class="site-footer wrap"><div class="footer-main"><div><a class="brand footer-brand" href="/">${brand}</a><p>Een eigen plek. Voor eigen ideeën.</p></div><nav class="footer-links" aria-label="Voetnavigatie"><a href="/privacy/">Privacy</a><a href="/terms/">Voorwaarden</a><a href="mailto:support@ratelslop.studio">Contact ↗</a><a href="https://github.com/RatelSlop/schoolnaam.nl" target="_blank" rel="noopener noreferrer">Broncode ↗</a></nav></div><p class="footer-note">© 2026 schoolnaam.nl · Een onafhankelijk hobbyproject. Je gekozen kleurthema wordt alleen op dit apparaat bewaard.</p></footer>`;
-const projects = normalizeProjects(JSON.parse(await readFile(path.join(root, 'public/assets/repos-snapshot.json'), 'utf8')));
+
 await mkdir(out, { recursive: true });
 await cp(path.join(root, 'public'), out, { recursive: true });
 const template = await readFile(path.join(root, 'src/index.html'), 'utf8');
-const replacements = { header, footer, 'github-icon': githubIcon, count: String(projects.length), projects: projects.map(projectCard).join('\n'), snapshot: JSON.stringify(projects).replace(/</g, '\\u003c'), 'snapshot-date': '28 oktober 2026' };
+const replacements = { header, footer, 'github-icon': githubIcon, count: 'Laden…', skeletons: skeletonCards(6) };
 await writeFile(path.join(out, 'index.html'), template.replace(/\{\{([\w-]+)\}\}/g, (_, name) => replacements[name]));
 for (const [slug, title] of [['privacy', 'Privacy'], ['terms', 'Voorwaarden']]) {
   const content = await readFile(path.join(root, `src/${slug}.html`), 'utf8');
@@ -21,4 +21,4 @@ for (const [slug, title] of [['privacy', 'Privacy'], ['terms', 'Voorwaarden']]) 
   await writeFile(path.join(out, slug, 'index.html'), `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} — schoolnaam.nl</title><meta name="description" content="${title} voor schoolnaam.nl en het automatische projectoverzicht."><link rel="canonical" href="https://schoolnaam.nl/${slug}/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><script src="/assets/theme.js"></script><link rel="stylesheet" href="/assets/style.css"></head><body>${header}<main id="main" class="legal wrap">${content}</main>${footer}</body></html>`);
 }
 await writeFile(path.join(out, '404.html'), `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pagina niet gevonden — schoolnaam.nl</title><meta name="robots" content="noindex"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><script src="/assets/theme.js"></script><link rel="stylesheet" href="/assets/style.css"></head><body>${header}<main id="main" class="not-found wrap"><p class="eyebrow">404 / Verkeerd afgeslagen</p><h1>Hier is nog<br>niks gebouwd.</h1><p>Deze pagina bestaat niet of is verplaatst.</p><a class="button" href="/">Terug naar schoolnaam.nl <span aria-hidden="true">↗</span></a></main>${footer}</body></html>`);
-console.log(`Built schoolnaam.nl: ${projects.length} projects, privacy, terms and 404.`);
+console.log('Built schoolnaam.nl with loading skeleton, privacy, terms and 404.');
